@@ -2,7 +2,7 @@
 An automation script to facilitate small business owners in tracking customers' purchase history and preferences.
 
 ## About
-GCPal reads CSV files generated from the Google forms and outputs a table that shows each customer's purchased items, quantities, and percentages.
+GCPal reads CSV files generated from the Google forms and outputs a table that shows each customer's purchased items, quantities, and percentages related to their overall purchases. 
 
 This is an ongoing project.
 
@@ -20,5 +20,5 @@ pip install tabulate
 
 ## Roadmap
 - [x] Create a simple, functional script.
-- [ ] Implement frontend & API to allow users to create Google forms that meet their needs.   
+- [ ] Implement frontend/UI that allows users to indicate the header info of their Google forms.
 - [ ] Use the above information to dynamically generate tables.
