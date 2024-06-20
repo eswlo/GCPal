@@ -13,5 +13,5 @@ pip install tabulate
 ```
 
 ## Usage
-* Save the CSV file in the same folder of GCPal.
+* Save the CSV file that you'd like to process in the same folder of GCPal.
 * Simply execute `python main.py`.
