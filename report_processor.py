@@ -1,5 +1,5 @@
 
-def get_raw_report(purchase_list, customer_index, item_index, quantity_index):
+def get_unorg_dict(purchase_list, customer_index, item_index, quantity_index):
     report = {}
     for row in purchase_list:
         customer = row[customer_index].lower() 
@@ -19,17 +19,17 @@ def get_raw_report(purchase_list, customer_index, item_index, quantity_index):
 
 
 
-def make_report_table(raw_report):
+def get_org_dict(unorg_dict):
     keys = ['customer', 'item', 'quantity', 'percentage (%)']
     dict_report = {key: [] for key in keys} #initialize dict for report
 
-    for customer, purchase in raw_report.items():
+    for customer, purchase in unorg_dict.items():
         # get total count of purchased items
         sum = 0
         for item, quantity in purchase.items():
             sum += quantity
 
-        # generate dict for report table    
+        # generate organized dict for report table    
         i = 0
         for item, quantity in purchase.items():
             percentage = (quantity / sum) * 100
@@ -44,3 +44,13 @@ def make_report_table(raw_report):
     return dict_report
 
 
+def get_row_index(unorg_dict):
+    i = 0
+    rowId = []
+    if len(unorg_dict) != 0:
+        while i < len(unorg_dict["customer"]):
+            j = i+1
+            id = str(j)
+            rowId.append(id)
+            i+=1
+    return rowId
