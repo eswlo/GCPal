@@ -1,29 +1,50 @@
 
-def get_unorg_dict(purchase_list, customer_index, item_index, quantity_index):
+def get_customer_dict(purchase_list, purchase_header):
     report = {}
     for row in purchase_list:
-        customer = row[customer_index].lower() 
-        item = row[item_index] 
-        quantity = int(row[quantity_index])
-        if customer in report:
-            purchase_dict = report[customer]
-            if item in purchase_dict:
-                purchase_dict[item] += quantity
+        row_length = len(row)
+        if get_sum(row, row_length) != 0:
+            customer = row[1].lower()
+            i = 2 
+            if customer not in report:
+                purchase_dict = {}
+                while i < row_length:
+                    item = purchase_header[i]
+                    quantity = 0 
+                    if row[i] != "":
+                        quantity = int(row[i])
+                    purchase_dict[item] = quantity
+                    i+=1
+                report[customer] = purchase_dict
             else:
-                purchase_dict[item] = quantity
-        else:
-            val_dict = {}
-            val_dict[item] = quantity
-            report[customer] = val_dict
+                purchase_dict = report[customer]
+                while i < row_length:
+                    item = purchase_header[i]
+                    quantity = 0 
+                    if row[i] != "":
+                        quantity = int(row[i])
+                    purchase_dict[item] += quantity
+                    i+=1
     return report
 
 
+def get_sum(row, row_length):
+    i = 2
+    total_sum  = 0
+    while i < row_length:
+        count = 0
+        if row[i] != "":
+            count = int(row[i])
+        total_sum  += count
+        i+=1
+    return total_sum 
 
-def get_org_dict(unorg_dict):
+
+def get_report_dict(input_dict):
     keys = ['customer', 'item', 'quantity', 'percentage (%)']
     dict_report = {key: [] for key in keys} #initialize dict for report
 
-    for customer, purchase in unorg_dict.items():
+    for customer, purchase in input_dict.items():
         # get total count of purchased items
         sum = 0
         for item, quantity in purchase.items():
@@ -44,11 +65,11 @@ def get_org_dict(unorg_dict):
     return dict_report
 
 
-def get_row_index(unorg_dict):
+def get_row_index(input_dict):
     i = 0
     rowId = []
-    if len(unorg_dict) != 0:
-        while i < len(unorg_dict["customer"]):
+    if len(input_dict) != 0:
+        while i < len(input_dict["customer"]):
             j = i+1
             id = str(j)
             rowId.append(id)

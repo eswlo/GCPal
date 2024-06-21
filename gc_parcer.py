@@ -1,13 +1,18 @@
 import csv
 
 def get_data(file_name):
-    ret = []
+    ret_list = []
+    ret_header = []
     with open(file_name, newline='') as csvfile:
         data = csv.reader(csvfile, delimiter=',')
-        next(data) #skip the first row
+        i = 0
         for row in data:
-            ret.append(row)
-    return ret
+            if i == 0:
+                ret_header = row
+                i+=1
+            else:
+                ret_list.append(row)
+    return [ret_list, ret_header]
 
 
 
