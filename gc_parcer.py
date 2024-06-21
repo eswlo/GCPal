@@ -1,6 +1,5 @@
 import csv
 
-
 def get_data(file_name):
     ret = []
     with open(file_name, newline='') as csvfile:
