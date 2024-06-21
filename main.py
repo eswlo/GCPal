@@ -6,10 +6,11 @@ from tabulate import tabulate
 customer_index = 1
 item_index = 2
 quantity_index = 3
+instruction = "Enter the name of the csv file stored in the folder, or press enter to quit: "
 
 if __name__ == '__main__':
-    filename = input("Enter the name only of the csv file stored in the folder: ")
-    if len(filename) != 0:
+    filename = input(instruction)
+    while len(filename) != 0:
         csv_file = filename + ".csv"
         if os.path.exists(csv_file): #check if the entered csv file exists
             purchase_list = get_data(csv_file)
@@ -17,9 +18,11 @@ if __name__ == '__main__':
             purchase_dict_org = get_org_dict(purchase_dict_unorg)
             rowID = get_row_index(purchase_dict_org)
             print(tabulate(purchase_dict_org, headers="keys", tablefmt="fancy_grid", showindex=rowID))
+            filename = input(instruction)
         else:
-            print("No file was found in the folder. Please try again.")
+            print("No file was found in the folder.")
+            filename = input(instruction)
     else:
-        print("No filename was entered. Please try again.")
+        print("Goodbye!")
 
     
