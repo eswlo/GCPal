@@ -2,8 +2,7 @@
 An automation script to aid small business owners in tracking customers' purchase history and preferences.
 
 ## About
-GCPal reads CSV files generated from the Google forms and outputs a table that shows each customer's purchased items, quantities, and percentages related to their overall purchases. 
-GCPal reads CSV files generated from the Google forms and outputs tables that shows each customer's purchased items, quantities, and percentages.
+GCPal reads CSV files generated from the Google forms and outputs a table that shows each customer's purchased items, quantities, and percentages related to their overall purchases.
 
 This is an ongoing project.
 
